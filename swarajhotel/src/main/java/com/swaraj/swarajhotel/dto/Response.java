@@ -5,26 +5,34 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.joda.time.LocalDate;
 
+import java.util.List;
+
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Response {
 
 
-    private  Long id;
+    private  int statusCode;
 
-    private LocalDate checkInDate;
+    private String message;
 
-    private LocalDate checkOutDate;
+    private String token;
 
-    private int numOfAdults;
+    private String role;
 
-    private int numOfChildren;
-
-    private int totalNumOfGuest;
+    private String expirationTime;
 
     private String bookingConfirmationCode;
 
     private UserDTO user;
 
     private RoomDTO room;
+
+    private BookingDTO booking;
+
+    private List<UserDTO> userList;
+
+    private List<RoomDTO> roomList;
+
+    private List<BookingDTO> bookingList;
 }
