@@ -1,16 +1,14 @@
 package com.swaraj.swarajhotel.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.swaraj.swarajhotel.entity.Room;
-import com.swaraj.swarajhotel.entity.User;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.joda.time.LocalDate;
 
-
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BookingDTO {
+public class Response {
+
 
     private  Long id;
 
