@@ -50,9 +50,9 @@ public class User implements UserDetails {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
 
     @Override
     public String getPassword() {
