@@ -1,5 +1,6 @@
 package com.swaraj.swarajhotel.utils;
 
+
 import com.swaraj.swarajhotel.dto.BookingDTO;
 import com.swaraj.swarajhotel.dto.RoomDTO;
 import com.swaraj.swarajhotel.dto.UserDTO;
@@ -11,19 +12,23 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.security.SecureRandom;
+
+
 public class Utils {
 
     private static final String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
     private static final SecureRandom secureRandom  = new SecureRandom();
 
-    public static  String  generateRandomAlphanumeric(int length){
+    public static  String  generateRandomConfirmationCode(int length){
         StringBuilder stringBuilder = new StringBuilder();
         for (int i=0 ; i < length; i++){
             int randomIndex = secureRandom.nextInt(ALPHANUMERIC_STRING.length());
             char randomChar = ALPHANUMERIC_STRING.charAt(randomIndex);
             stringBuilder.append(randomChar);
         }
+
         return stringBuilder.toString();
     }
 
@@ -135,5 +140,6 @@ public class Utils {
     public static List<BookingDTO> mapBookingListEntityToBookingListDTO(List<Booking> bookingList){
 
         return bookingList.stream().map(Utils::mapBookingEntityToBookingDTO).collect(Collectors.toList());
+
     }
 }

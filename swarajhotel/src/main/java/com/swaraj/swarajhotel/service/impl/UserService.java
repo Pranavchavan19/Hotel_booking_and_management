@@ -105,35 +105,114 @@ public class UserService implements IUserService {
 
         try {
             List<User> userList = userRepository.findAll();
-            List<UserDTO> userDTOList =
+            List<UserDTO> userDTOList = Utils.mapUserListEntityToUserListDTO(userList);
+            response.setStatusCode(200);
+            response.setMessage("Successfull");
+            response.setUserList(userDTOList);
 
-        }catch (OurException e){
 
-        } catch (Exception e) {
+        }catch (Exception e) {
             response.setStatusCode(500);
             response.setMessage("Error getting all users" + e.getMessage());
 
         }
-        return null;
+        return response;
     }
 
     @Override
     public Response getUserBookingHistory(String userId) {
-        return null;
+
+        Response response = new Response();
+
+        try{
+
+           User user = userRepository.findById(Long.valueOf(userId)).orElseThrow(()-> new OurException("User not found"));
+           UserDTO userDTO = Utils.mapUserEntityToUserDtoPlusUserBookingsAndRoom(user);
+
+            response.setStatusCode(200);
+            response.setMessage("Successfull");
+            response.setUser(userDTO);
+
+        }catch (OurException e){
+
+            response.setStatusCode(404);
+            response.setMessage(e.getMessage());
+
+        }catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("Error getting all users" + e.getMessage());
+
+        }
+        return response;
     }
 
     @Override
     public Response deleteUser(String userId) {
-        return null;
+        Response response = new Response();
+
+        try{
+            userRepository.findById(Long.valueOf(userId)).orElseThrow(()-> new OurException("User not found"));
+            userRepository.deleteById(Long.valueOf(userId));
+            response.setStatusCode(200);
+            response.setMessage("Successfull");
+
+        }catch (OurException e){
+
+            response.setStatusCode(404);
+            response.setMessage(e.getMessage());
+
+        }catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("Error getting all users" + e.getMessage());
+        }
+        return response;
     }
 
     @Override
     public Response getUserById(String userId) {
-        return null;
+        Response response = new Response();
+
+        try{
+            User user = userRepository.findById(Long.valueOf(userId)).orElseThrow(()-> new OurException("User not found"));
+            UserDTO userDTO = Utils.mapUserEntityToUserDTO(user);
+
+            response.setStatusCode(200);
+            response.setMessage("Successfull");
+            response.setUser(userDTO);
+
+        }catch (OurException e){
+
+            response.setStatusCode(404);
+            response.setMessage(e.getMessage());
+
+        }catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("Error getting all users" + e.getMessage());
+        }
+        return response;
     }
 
     @Override
-    public Response getMyInfo(String userId) {
-        return null;
+    public Response getMyInfo(String email) {
+        Response response = new Response();
+
+        try{
+            User user = userRepository.findByEmail(email).orElseThrow(()-> new OurException("User not found"));
+            UserDTO userDTO = Utils.mapUserEntityToUserDTO(user);
+
+            response.setStatusCode(200);
+            response.setMessage("Successfull");
+            response.setUser(userDTO);
+
+        }catch (OurException e){
+
+            response.setStatusCode(404);
+            response.setMessage(e.getMessage());
+
+        }catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("Error getting all users" + e.getMessage());
+        }
+        return response;
     }
 }
