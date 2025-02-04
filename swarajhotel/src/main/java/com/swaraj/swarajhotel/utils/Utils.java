@@ -1,10 +1,6 @@
 package com.swaraj.swarajhotel.utils;
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
->>>>>>> 16e278b8f07edce77d883bc3c46b3b297272fe31
 import com.swaraj.swarajhotel.dto.BookingDTO;
 import com.swaraj.swarajhotel.dto.RoomDTO;
 import com.swaraj.swarajhotel.dto.UserDTO;
@@ -15,15 +11,7 @@ import com.swaraj.swarajhotel.entity.User;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.stream.Collectors;
-<<<<<<< HEAD
 
-import java.security.SecureRandom;
-
-=======
-=======
-import java.security.SecureRandom;
->>>>>>> 8b880164f6c9d33fffdd04fb137d8ead98f428db
->>>>>>> 16e278b8f07edce77d883bc3c46b3b297272fe31
 
 public class Utils {
 
@@ -38,11 +26,7 @@ public class Utils {
             char randomChar = ALPHANUMERIC_STRING.charAt(randomIndex);
             stringBuilder.append(randomChar);
         }
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
->>>>>>> 16e278b8f07edce77d883bc3c46b3b297272fe31
         return stringBuilder.toString();
     }
 
@@ -154,11 +138,6 @@ public class Utils {
     public static List<BookingDTO> mapBookingListEntityToBookingListDTO(List<Booking> bookingList){
 
         return bookingList.stream().map(Utils::mapBookingEntityToBookingDTO).collect(Collectors.toList());
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> 8b880164f6c9d33fffdd04fb137d8ead98f428db
->>>>>>> 16e278b8f07edce77d883bc3c46b3b297272fe31
     }
 }
