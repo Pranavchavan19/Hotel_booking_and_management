@@ -5,7 +5,6 @@ import com.swaraj.swarajhotel.dto.Response;
 import com.swaraj.swarajhotel.entity.User;
 
 public interface IUserService {
-
     Response register(User user);
 
     Response login(LoginRequest loginRequest);
@@ -19,5 +18,5 @@ public interface IUserService {
     Response getUserById(String userId);
 
     Response getMyInfo(String email);
-    
+
 }

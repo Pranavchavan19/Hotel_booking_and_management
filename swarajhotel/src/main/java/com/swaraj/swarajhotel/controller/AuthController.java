@@ -20,15 +20,14 @@ public class AuthController {
     private IUserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<Response> register(@RequestBody User user){
-           Response response = userService.register(user);
-           return ResponseEntity.status(response.getStatusCode()).body(response);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<Response> login(@RequestBody LoginRequest loginRequest){
-        Response response = userService.login(loginRequest);
+    public ResponseEntity<Response> register(@RequestBody User user) {
+        Response response = userService.register(user);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<Response> login(@RequestBody LoginRequest loginRequest) {
+        Response response = userService.login(loginRequest);
+        return ResponseEntity.status(response.getStatusCode()).body(response);
+    }
 }

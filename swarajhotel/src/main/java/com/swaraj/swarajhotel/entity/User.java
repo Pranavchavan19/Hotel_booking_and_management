@@ -1,9 +1,7 @@
 package com.swaraj.swarajhotel.entity;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,14 +10,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
     @NotBlank(message = "Email is required")
     @Column(unique = true)
@@ -39,6 +36,45 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
 
+    public User() {}
+
+    public User(Long id, String email, String name, String phoneNumber, String password, String role, List<Booking> bookings) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.role = role;
+        this.bookings = bookings;
+    }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getPhoneNumber() { return phoneNumber; }
+
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role; }
+
+    public List<Booking> getBookings() { return bookings; }
+
+    public void setBookings(List<Booking> bookings) { this.bookings = bookings; }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -50,34 +86,26 @@ public class User implements UserDetails {
         return email;
     }
 
-//    public String getPassword() {
-//        return password;
-//    }
+    @Override
+    public boolean isAccountNonExpired() { return true; }
 
     @Override
-    public String getPassword() {
-        return password;
-    }
+    public boolean isAccountNonLocked() { return true; }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+    public boolean isCredentialsNonExpired() { return true; }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+    public boolean isEnabled() { return true; }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-
 }
